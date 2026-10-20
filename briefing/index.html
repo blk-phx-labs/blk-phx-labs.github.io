@@ -90,6 +90,8 @@
     .signal-summary { font-size: 15px; line-height: 1.6; color: var(--text); margin: 0; }
     .signal-who { font-size: 13px; color: var(--text-muted); margin: 0.5rem 0 0; }
     .signal-who strong { color: var(--accent); font-weight: 400; }
+    .signal-src { display: inline-block; margin-top: 0.6rem; font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+    .signal-src:hover { text-decoration: underline; }
 
     /* ── Analysis ── */
     .analysis { max-width: 720px; }
@@ -251,6 +253,14 @@
                 if (f.company_or_institution) who.append(' · ');
                 who.appendChild(el('strong', null, f.key_metric));
               }
+            }
+            // Only http(s) links; anything else in the JSON is shown as nothing.
+            if (/^https?:\/\//i.test(String(f.source_url || ''))) {
+              const src = li.appendChild(el('a', 'signal-src', 'Source ↗'));
+              src.href = f.source_url;
+              src.target = '_blank';
+              src.rel = 'noopener noreferrer';
+              try { src.title = new URL(f.source_url).hostname.replace(/^www\./, ''); } catch (e) {}
             }
             $('signals').appendChild(li);
           });
