@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LabMind Daily Briefing</title>
-  <meta name="description" content="The latest LabMind daily briefing on cell and gene therapy manufacturing, from BLK PHX LABS.">
+  <meta name="description" content="The latest LabMind daily briefing from BLK PHX LABS: biotech, AI and biomanufacturing signals, with transcript, signal table and analysis.">
   <link rel="canonical" href="https://blkphxlabs.com/briefing/">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="LabMind Daily Briefing">
-  <meta property="og:description" content="The latest LabMind daily briefing on cell and gene therapy manufacturing, from BLK PHX LABS.">
+  <meta property="og:description" content="The latest LabMind daily briefing from BLK PHX LABS: biotech, AI and biomanufacturing signals.">
   <meta property="og:url" content="https://blkphxlabs.com/briefing/">
   <meta property="og:image" content="https://blkphxlabs.com/assets/og-labops.png">
   <meta property="og:image:width" content="1200">
@@ -21,6 +21,8 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/silkscreen-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://storage.googleapis.com" crossorigin>
 
   <style>
     @font-face { font-family: 'Silkscreen'; src: url('/assets/silkscreen-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
@@ -29,44 +31,92 @@
       --bg: #0a0a09;
       --ink: #f0ede8;
       --text: #c8c4bc;
-      --text-soft: #aeaaa2;
-      --text-muted: #948f87;
-      --accent: #e8520a;
+      --text-soft: #aeaaa2;   /* 8.6:1 on --bg */
+      --text-muted: #948f87;  /* 6.2:1 on --bg */
+      --accent: #e8520a;      /* 5.3:1 on --bg */
+      --accent-line: rgba(232,82,10,0.15);
+      --accent-wash: rgba(232,82,10,0.04);
+      --hair: rgba(200,196,188,0.1);
       --pixel: 'Silkscreen', ui-monospace, monospace;
       --serif: Georgia, 'Times New Roman', serif;
     }
     *, *::before, *::after { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--serif); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    [hidden] { display: none !important; }
 
     .grid-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(rgba(232,82,10,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(232,82,10,0.03) 1px, transparent 1px); background-size: 60px 60px; }
 
-    nav { position: relative; z-index: 1; padding: 0 2rem; border-bottom: 1px solid rgba(232,82,10,0.15); }
-    .nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+    nav { position: relative; z-index: 1; padding: 0 2rem; border-bottom: 1px solid var(--accent-line); }
+    .nav-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
     .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-    .nav-badge { width: 32px; height: 32px; }
+    .nav-badge { width: 32px; height: 32px; image-rendering: pixelated; }
     .nav-name { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
     .back { font-family: var(--pixel); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; }
     .back:hover { color: var(--ink); }
 
-    main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 56px 2rem 72px; text-align: center; }
-    .eyebrow { font-family: var(--pixel); font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.75rem; }
-    .eyebrow-line { width: 24px; height: 1px; background: var(--accent); }
-    h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 400; color: var(--ink); margin: 0 0 2rem; letter-spacing: -0.01em; }
+    main { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 56px 2rem 72px; }
+    .eyebrow { font-family: var(--pixel); font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .eyebrow-line { width: 24px; height: 1px; background: var(--accent); flex-shrink: 0; }
+    h1 { font-size: clamp(30px, 4.4vw, 44px); font-weight: 400; line-height: 1.1; color: var(--ink); margin: 0 0 0.75rem; letter-spacing: -0.02em; }
+    .meta { font-family: var(--pixel); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 2.5rem; line-height: 1.8; }
+    .meta .dot { color: var(--accent); padding: 0 0.4em; }
 
-    .player { max-width: 420px; margin: 0 auto; }
+    /* ── Player + transcript ── */
+    .top { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
     video { display: block; width: 100%; aspect-ratio: 9 / 16; background: #000; border: 1px solid rgba(232,82,10,0.25); border-radius: 10px; object-fit: contain; }
-    .controls { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem; }
+    .controls { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
     .btn { display: inline-flex; align-items: center; padding: 11px 18px; font-family: var(--pixel); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; transition: background 0.2s; }
     .btn:hover { background: rgba(232,82,10,0.1); }
     audio { width: 100%; margin-top: 1rem; }
-    .full { display: inline-block; margin-top: 1.75rem; font-size: 15px; color: var(--text-soft); }
-    .full:hover { color: var(--ink); }
 
-    footer { position: relative; z-index: 1; padding: 2rem; border-top: 1px solid rgba(232,82,10,0.1); text-align: center; font-family: var(--pixel); font-size: 12px; letter-spacing: 0.06em; color: var(--text-muted); }
+    .label { display: flex; align-items: center; gap: 0.6rem; font-family: var(--pixel); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin: 0 0 1.25rem; }
+    .label::before { content: ''; width: 8px; height: 8px; background: var(--accent); flex-shrink: 0; }
+    .transcript p { font-size: 17px; line-height: 1.8; color: var(--text); margin: 0 0 1.1rem; }
+    .transcript p:first-child { color: var(--ink); }
 
-    @media (max-width: 640px) { nav { padding: 0 16px; } main { padding: 40px 16px 56px; } }
+    .divider { height: 2px; margin: 3.5rem 0; background: repeating-linear-gradient(90deg, rgba(232,82,10,0.25) 0 4px, transparent 4px 12px); }
+
+    /* ── Signal table ── */
+    .signals { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+    .signal { padding: 1.1rem 1.25rem; border: 1px solid var(--accent-line); border-radius: 10px; background: var(--accent-wash); }
+    .signal-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.6rem; }
+    .signal-domain { font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); min-width: 0; overflow-wrap: anywhere; }
+    .strength { flex-shrink: 0; padding: 3px 8px; border-radius: 100px; font-family: var(--pixel); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid; }
+    .strength-high { color: var(--accent); border-color: rgba(232,82,10,0.5); }
+    .strength-medium { color: var(--text-soft); border-color: rgba(200,196,188,0.3); }
+    .strength-low { color: var(--text-muted); border-color: var(--hair); }
+    .signal-summary { font-size: 15px; line-height: 1.6; color: var(--text); margin: 0; }
+    .signal-who { font-size: 13px; color: var(--text-muted); margin: 0.5rem 0 0; }
+    .signal-who strong { color: var(--accent); font-weight: 400; }
+
+    /* ── Analysis ── */
+    .analysis { max-width: 720px; }
+    .analysis h3 { font-family: var(--pixel); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 2rem 0 0.75rem; }
+    .analysis h3:first-child { margin-top: 0; }
+    .analysis p, .analysis li { font-size: 16px; line-height: 1.8; color: var(--text); }
+    .analysis p { margin: 0 0 1rem; }
+    .analysis ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+    .analysis li { margin-bottom: 0.4rem; }
+    .analysis li::marker { color: var(--accent); }
+    .analysis strong { color: var(--ink); font-weight: 400; }
+
+    .note { margin-top: 3rem; padding: 1rem 1.25rem; border: 1px dashed rgba(232,82,10,0.3); border-radius: 10px; font-size: 14px; line-height: 1.6; color: var(--text-soft); max-width: 720px; }
+    .status { font-size: 15px; color: var(--text-soft); }
+
+    footer { position: relative; z-index: 1; padding: 2rem; border-top: 1px solid var(--accent-line); text-align: center; font-family: var(--pixel); font-size: 12px; letter-spacing: 0.06em; color: var(--text-muted); }
+
+    @media (max-width: 760px) {
+      .top { grid-template-columns: 1fr; gap: 2rem; }
+      .player { max-width: 360px; width: 100%; margin: 0 auto; }
+      .signals { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 16px; } main { padding: 40px 16px 56px; }
+      .transcript p { font-size: 16px; }
+      .divider { margin: 2.5rem 0; }
+    }
   </style>
 </head>
 <body>
@@ -78,43 +128,145 @@
       <img class="nav-badge" src="/assets/blkphx-mark-8bit.png" width="32" height="32" alt="">
       <span class="nav-name">LabOps.AI</span>
     </a>
-    <a class="back" href="/">← Back to thesis</a>
+    <a class="back" href="/">← Home</a>
   </div>
 </nav>
 
 <main>
-  <div class="eyebrow"><span class="eyebrow-line"></span>LabMind Daily Briefing<span class="eyebrow-line"></span></div>
+  <div class="eyebrow"><span class="eyebrow-line"></span>LabMind Daily Briefing</div>
   <h1>Latest briefing</h1>
+  <p class="meta" id="meta" hidden></p>
 
-  <div class="player">
-    <!-- Media stays in the pipeline's public bucket; nothing is committed here. JS sets the source with an hourly cache-bust. -->
-    <video id="briefing-video" controls playsinline preload="metadata" poster="/assets/og-labops.png"
-           data-src="https://storage.googleapis.com/labmind-briefing-ops/latest_briefing.mp4">
-      Your browser can't play this video. <a href="https://storage.googleapis.com/labmind-briefing-ops/latest_briefing.mp4">Download it instead.</a>
-    </video>
-    <noscript><p><a class="full" href="https://storage.googleapis.com/labmind-briefing-ops/latest_briefing.mp4">Watch the latest briefing →</a></p></noscript>
-    <div class="controls">
-      <button class="btn" id="audio-toggle" type="button" aria-expanded="false" aria-controls="briefing-audio">Audio only</button>
+  <div class="top">
+    <div class="player">
+      <!-- Media and the briefing JSON live in the pipeline's public bucket (read by exact name only). Nothing is committed here. -->
+      <video id="briefing-video" controls playsinline preload="metadata" poster="/assets/og-labops.png">
+        Your browser can't play this video. <a href="https://storage.googleapis.com/blkphxlabs-briefing/latest_briefing.mp4">Download it instead.</a>
+      </video>
+      <noscript><p><a class="btn" href="https://storage.googleapis.com/blkphxlabs-briefing/latest_briefing.mp4">Watch the latest briefing</a></p></noscript>
+      <div class="controls">
+        <button class="btn" id="audio-toggle" type="button" aria-expanded="false" aria-controls="briefing-audio">Audio only</button>
+      </div>
+      <audio id="briefing-audio" controls preload="none" hidden></audio>
     </div>
-    <audio id="briefing-audio" controls preload="none" hidden
-           data-src="https://storage.googleapis.com/labmind-briefing-ops/latest_briefing.mp3"></audio>
+
+    <section class="transcript" aria-labelledby="transcript-label">
+      <h2 class="label" id="transcript-label">Transcript</h2>
+      <div id="transcript"><p class="status">Loading today's briefing…</p></div>
+    </section>
   </div>
 
-  <a class="full" href="https://storage.googleapis.com/labmind-briefing-ops/index.html" target="_blank" rel="noopener">Open full briefing (transcript + sources) →</a>
+  <div id="details" hidden>
+    <div class="divider"></div>
+    <section aria-labelledby="signals-label">
+      <h2 class="label" id="signals-label">Signal table</h2>
+      <ul class="signals" id="signals"></ul>
+    </section>
+
+    <div id="analysis-block" hidden>
+      <div class="divider"></div>
+      <section aria-labelledby="analysis-label">
+        <h2 class="label" id="analysis-label">Analysis</h2>
+        <div class="analysis" id="analysis"></div>
+      </section>
+    </div>
+
+    <p class="note">Written each morning by an AI pipeline from public news alerts and published without human review. Treat it as a starting point and check the original sources before acting on anything here.</p>
+  </div>
 </main>
 
 <footer>BLK PHX LABS · © 2026</footer>
 
 <script>
   (() => {
-    // Object names are fixed, so an hourly query string picks up each new render without re-downloading on every view.
-    const hour = Math.floor(Date.now() / 3.6e6);
+    const BASE = 'https://storage.googleapis.com/blkphxlabs-briefing/';
     const video = document.getElementById('briefing-video');
     const audio = document.getElementById('briefing-audio');
-    video.src = video.dataset.src + '?t=' + hour;
-    audio.src = audio.dataset.src + '?t=' + hour;
+    const $ = (id) => document.getElementById(id);
+    const el = (tag, cls, text) => {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    };
 
-    const toggle = document.getElementById('audio-toggle');
+    // Every model-written string goes in through textContent, so nothing in it can become markup.
+    // "**bold**" is the only inline formatting the analysis uses.
+    const inline = (parent, text) => {
+      text.split(/\*\*(.+?)\*\*/g).forEach((part, i) => {
+        if (part) parent.appendChild(i % 2 ? el('strong', null, part) : document.createTextNode(part.replace(/\*/g, '')));
+      });
+      return parent;
+    };
+
+    const renderAnalysis = (md) => {
+      const root = $('analysis');
+      let list = null;
+      md.split(/\r?\n/).forEach((raw) => {
+        const line = raw.trim();
+        if (!line) { list = null; return; }
+        const heading = line.match(/^#{1,6}\s+(.*)$/) || line.match(/^\*\*([^*]+)\*\*:?$/) || line.match(/^\*\*(\d+\.[^*]+?):?\*\*:?$/);
+        const bullet = line.match(/^[-*•]\s+(.*)$/);
+        if (heading) { list = null; root.appendChild(el('h3', null, heading[1].replace(/\*/g, '').replace(/:$/, ''))); }
+        else if (bullet) { if (!list) list = root.appendChild(el('ul')); list.appendChild(inline(el('li'), bullet[1])); }
+        else { list = null; root.appendChild(inline(el('p'), line)); }
+      });
+    };
+
+    const setMedia = (videoUrl, audioUrl) => { video.src = videoUrl; audio.src = audioUrl; };
+
+    fetch(BASE + 'latest_briefing.json', { cache: 'no-cache' })
+      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then((b) => {
+        setMedia(b.video_url || BASE + 'latest_briefing.mp4', b.audio_url || BASE + 'latest_briefing.mp3');
+
+        const when = b.generated_at ? new Date(b.generated_at) : null;
+        if (when && !isNaN(when)) {
+          const meta = $('meta');
+          const date = when.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/New_York' });
+          const time = when.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' });
+          meta.append(date, el('span', 'dot', '·'), time + ' ET');
+          if (b.source_count) meta.append(el('span', 'dot', '·'), b.source_count + ' sources');
+          meta.hidden = false;
+        }
+
+        const transcript = $('transcript');
+        transcript.textContent = '';
+        String(b.transcript || '').split(/\n\s*\n|\n/).map((s) => s.trim()).filter(Boolean)
+          .forEach((para) => transcript.appendChild(el('p', null, para)));
+
+        const facts = Array.isArray(b.facts) ? b.facts : [];
+        const order = { high: 0, medium: 1, low: 2 };
+        facts.slice().sort((a, z) => (order[a.signal_strength] ?? 3) - (order[z.signal_strength] ?? 3))
+          .forEach((f) => {
+            const li = el('li', 'signal');
+            const top = li.appendChild(el('div', 'signal-top'));
+            top.appendChild(el('span', 'signal-domain', f.domain || 'General'));
+            const s = String(f.signal_strength || '').toLowerCase();
+            if (order[s] != null) top.appendChild(el('span', 'strength strength-' + s, s));
+            li.appendChild(el('p', 'signal-summary', f.one_line_summary || ''));
+            if (f.company_or_institution || f.key_metric) {
+              const who = li.appendChild(el('p', 'signal-who', f.company_or_institution || ''));
+              if (f.key_metric) {
+                if (f.company_or_institution) who.append(' · ');
+                who.appendChild(el('strong', null, f.key_metric));
+              }
+            }
+            $('signals').appendChild(li);
+          });
+
+        if (b.analysis) { renderAnalysis(String(b.analysis)); $('analysis-block').hidden = false; }
+        $('details').hidden = !facts.length && !b.analysis;
+      })
+      .catch(() => {
+        // The media still plays without the JSON; only the text sections are lost.
+        const hour = Math.floor(Date.now() / 3.6e6);
+        setMedia(BASE + 'latest_briefing.mp4?t=' + hour, BASE + 'latest_briefing.mp3?t=' + hour);
+        $('transcript').textContent = '';
+        $('transcript').appendChild(el('p', 'status', "Today's transcript isn't available right now. The video and audio still play."));
+      });
+
+    const toggle = $('audio-toggle');
     toggle.addEventListener('click', () => {
       const show = audio.hidden;
       audio.hidden = !show;
