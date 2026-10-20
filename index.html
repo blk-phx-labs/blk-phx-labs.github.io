@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LabOps.AI — Investment Thesis</title>
+  <title>LabOps.AI — BLK PHX LABS</title>
   <meta name="description" content="LabOps.AI turns cell and gene therapy process knowledge into software that QA teams can review, audit, and trust. Human-in-the-loop decision support for GMP manufacturing.">
   <link rel="canonical" href="https://blkphxlabs.com/">
 
@@ -73,18 +73,31 @@
     .nav-links { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
     .nav-links a { display: block; padding: 6px 8px; font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
-    @media (max-width: 780px) { .nav-by { display: none; } }
-    @media (max-width: 640px) { nav { padding: 0 16px; } .nav-links { display: none; } }
+    .nav-links .nav-cta { margin-left: 0.5rem; padding: 6px 12px; border: 1px solid var(--accent); color: var(--accent); }
+    .nav-links .nav-cta:hover { background: var(--accent); color: #0a0a09; }
+    @media (max-width: 860px) { .nav-by { display: none; } }
+    @media (max-width: 640px) { nav { padding: 0 16px; } .nav-links li:not(:last-child) { display: none; } .nav-links .nav-cta { margin-left: 0; } }
 
     /* ── Hero ── */
     .hero { position: relative; z-index: 1; border-bottom: 1px solid rgba(232,82,10,0.1); overflow: hidden; }
     .hero-fx { position: absolute; inset: 0; z-index: 0; opacity: 0.5; pointer-events: none; }
     .hero-fx::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,9,0.92) 0%, rgba(10,10,9,0.55) 55%, rgba(10,10,9,0.2) 100%); }
     .hero-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 140px 2rem 96px; }
-    .hero-mark { display: block; width: 120px; height: 120px; margin-bottom: 2rem; }
+    .hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) 260px; grid-template-areas: "copy art"; align-items: center; gap: 2.5rem; }
+    .hero-copy { grid-area: copy; min-width: 0; }
+    .hero-art { grid-area: art; position: relative; display: grid; place-items: center; }
+    .hero-glow { position: absolute; width: 150%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(232,82,10,0.28) 0%, rgba(232,82,10,0.08) 40%, transparent 68%); }
+    /* CRT scanlines over the glow, kept faint so the mark stays crisp. */
+    .hero-glow::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: repeating-linear-gradient(0deg, rgba(10,10,9,0.45) 0 2px, transparent 2px 4px); }
+    .hero-mark { position: relative; display: block; width: 100%; height: auto; image-rendering: pixelated; filter: drop-shadow(0 0 28px rgba(232,82,10,0.35)); }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; grid-template-areas: "art" "copy"; gap: 2rem; }
+      .hero-art { justify-self: start; width: 120px; }
+    }
     .eyebrow { font-family: var(--pixel); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    @media (max-width: 640px) { .eyebrow-more { display: none; } }
     .eyebrow-line { width: 24px; height: 1px; background: var(--accent); flex-shrink: 0; }
-    h1 { font-size: clamp(34px, 5vw, 58px); font-weight: 400; line-height: 1.1; color: var(--ink); margin: 0 0 1.5rem; letter-spacing: -0.02em; }
+    h1 { font-size: clamp(34px, 4.6vw, 54px); font-weight: 400; line-height: 1.1; color: var(--ink); margin: 0 0 1.5rem; letter-spacing: -0.02em; }
     .grad { background: linear-gradient(90deg, #e8520a, #b8430a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .hero-sub { font-size: 18px; line-height: 1.75; color: var(--text); max-width: 620px; margin: 0 0 2rem; }
     .tags { display: flex; gap: 0.6rem; flex-wrap: wrap; list-style: none; margin: 0 0 2.25rem; padding: 0; }
@@ -95,7 +108,7 @@
     .btn-primary:hover { background: #ff6a1f; }
     .btn-ghost { color: var(--accent); background: transparent; }
     .btn-ghost:hover { background: rgba(232,82,10,0.1); }
-    @media (max-width: 640px) { .hero-inner { padding: 112px 16px 72px; } .hero-mark { width: 96px; height: 96px; } .hero-sub { font-size: 16px; } }
+    @media (max-width: 640px) { .hero-inner { padding: 112px 16px 72px; } .hero-art { width: 96px; } .hero-sub { font-size: 16px; } }
 
     /* ── Sections ── */
     .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
@@ -186,7 +199,11 @@
     @media (max-width: 640px) { .founder-wrap { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; } .founder-lockup { width: 110px; } .founder-card { padding: 1.5rem; } }
 
     /* Contact */
-    .contact-line { font-size: 20px; line-height: 1.6; color: var(--ink); max-width: 620px; margin: 0 0 1.75rem; }
+    .contact-panel { position: relative; overflow: hidden; padding: 2.5rem; border: 1px solid var(--accent-line); border-radius: 12px; background: radial-gradient(120% 140% at 100% 0%, rgba(232,82,10,0.14) 0%, rgba(232,82,10,0.03) 45%, transparent 70%), #0e0c0a; }
+    .contact-line { font-size: 20px; line-height: 1.6; color: var(--ink); max-width: 620px; margin: 0 0 1.5rem; }
+    .contact-email { display: inline-block; margin-bottom: 1.75rem; font-family: var(--pixel-big); font-size: clamp(14px, 2.4vw, 22px); line-height: 1.4; color: var(--accent); text-decoration: none; word-break: break-all; }
+    .contact-email:hover { color: #ff6a1f; }
+    @media (max-width: 640px) { .contact-panel { padding: 1.5rem; } }
     .contact-sub { font-size: 14px; color: var(--text-soft); margin: 1.25rem 0 0; }
 
     /* Sources */
@@ -206,7 +223,9 @@
     .footer-lockup { width: 72px; height: auto; opacity: 0.7; margin: 0 auto 1rem; display: block; }
     .footer-logo { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
     .footer-sub { font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); }
-    .footer-sub a { color: var(--text-soft); }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.5rem; list-style: none; margin: 1.25rem 0 1.25rem; padding: 0; font-family: var(--pixel); font-size: 12px; letter-spacing: 0.06em; }
+    .footer-links a { color: var(--text-soft); text-decoration: none; }
+    .footer-links a:hover { color: var(--accent); }
 
     /* Initial states for motion; removed entirely under reduced motion or if the libraries fail. */
     .js-motion .hero-mark { clip-path: inset(100% 0 0 0); }
@@ -230,7 +249,8 @@
       <li><a href="#why-now">Why Now</a></li>
       <li><a href="#product">Product</a></li>
       <li><a href="#founder">Founder</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="/briefing/">Briefing</a></li>
+      <li><a class="nav-cta" href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -238,8 +258,12 @@
 <header class="hero" id="top">
   <div class="hero-fx" id="hero-fx" aria-hidden="true"></div>
   <div class="hero-inner">
-    <img class="hero-mark" id="hero-mark" src="/assets/blkphx-mark-8bit.png" width="350" height="350" alt="BLK PHX LABS phoenix mark">
-    <div class="eyebrow" data-hero><span class="eyebrow-line"></span>Investment Thesis</div>
+    <div class="hero-art">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <img class="hero-mark" id="hero-mark" src="/assets/blkphx-mark-8bit.png" width="350" height="350" alt="BLK PHX LABS phoenix mark">
+    </div>
+    <div class="hero-copy">
+    <div class="eyebrow" data-hero><span class="eyebrow-line"></span>BLK PHX LABS<span class="eyebrow-more">· Biomanufacturing intelligence</span></div>
     <h1 data-hero>The operating system<br>for <span class="grad">biological manufacturing.</span></h1>
     <p class="hero-sub" data-hero>Cell and gene therapy is manufactured one patient at a time, on paper batch records and the memory of a few experienced operators. LabOps.AI turns that process knowledge into software that QA teams can review, audit, and trust.</p>
     <ul class="tags" data-hero aria-label="Focus areas">
@@ -251,6 +275,7 @@
     <div class="ctas" data-hero>
       <a class="btn btn-primary" href="#contact">Get in touch</a>
       <a class="btn btn-ghost" href="#product">See what's built</a>
+    </div>
     </div>
   </div>
 </header>
@@ -536,9 +561,15 @@
         </div>
       </div>
 
-      <p class="contact-line" data-reveal>Building in CGT manufacturing, QA, or process development? I'd like to hear what breaks on your floor.</p>
-      <a class="btn btn-primary" href="mailto:fabian@blkphxlabs.com?subject=LabOps.AI" data-reveal>Email Fabian</a>
-      <p class="contact-sub" data-reveal>Investors and design partners: same address.</p>
+      <div class="contact-panel" data-reveal>
+        <p class="contact-line">Building in CGT manufacturing, QA, or process development? I'd like to hear what breaks on your floor.</p>
+        <a class="contact-email" href="mailto:fabian@blkphxlabs.com?subject=LabOps.AI">fabian@blkphxlabs.com</a>
+        <div class="ctas">
+          <a class="btn btn-primary" href="mailto:fabian@blkphxlabs.com?subject=LabOps.AI">Email Fabian</a>
+          <a class="btn btn-ghost" href="/briefing/">Watch today's briefing</a>
+        </div>
+        <p class="contact-sub">Investors and design partners: same address.</p>
+      </div>
     </div>
   </section>
 
@@ -564,7 +595,13 @@
 <footer>
   <img class="footer-lockup" src="/assets/blkphx-labs-lockup-8bit.png" width="493" height="431" alt="" loading="lazy" data-reveal>
   <div class="footer-logo">LabOps.AI</div>
-  <div class="footer-sub">BLK PHX LABS · Early Stage · © 2026 · <a href="#contact">Contact</a></div>
+  <ul class="footer-links">
+    <li><a href="/briefing/">Daily briefing</a></li>
+    <li><a href="mailto:fabian@blkphxlabs.com">fabian@blkphxlabs.com</a></li>
+    <li><a href="https://github.com/blk-phx-labs" target="_blank" rel="noopener">GitHub ↗</a></li>
+    <li><a href="https://www.linkedin.com/in/fpalvarez23/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+  </ul>
+  <div class="footer-sub">BLK PHX LABS · Early Stage · © 2026</div>
 </footer>
 
 <!--

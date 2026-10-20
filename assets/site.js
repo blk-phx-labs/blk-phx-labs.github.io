@@ -29,7 +29,11 @@
   const mark = document.getElementById('hero-mark');
   const hero = gsap.timeline();
   hero
-    .fromTo(mark, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 0.9, ease: 'steps(12)' })
+    .fromTo(mark, { clipPath: 'inset(100% 0 0 0)' }, {
+      clipPath: 'inset(0% 0 0 0)', duration: 0.9, ease: 'steps(12)',
+      // An inset clip, even at 0%, cuts the drop-shadow glow off at the image's square edges.
+      onComplete: () => { mark.style.clipPath = 'none'; },
+    })
     .fromTo('[data-hero]', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.08 }, '-=0.1')
     .add(() => gsap.to(mark, { y: -4, duration: 1.6, ease: 'steps(4)', yoyo: true, repeat: -1 }));
 
